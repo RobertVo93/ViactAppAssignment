@@ -3,7 +3,20 @@
 2. ### Setup and run docker on your side
 3. ### Deploy the app
    1. Open the terminal at root folder
-   2. Deploy on docker by running the below command
+   2. Run the list of below command one by one
+   ```
+      cd nestjs-app
+   ```
+   ```
+      npm install
+   ```
+   ```
+      npm run build
+   ```
+   ```
+      cd ../
+   ```
+   3. Deploy on docker by running the below command
    ```bash
       docker compose up -d
    ```
