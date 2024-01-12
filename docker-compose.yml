@@ -1,0 +1,64 @@
+version: '3.8'
+
+networks:
+  default:
+
+services:
+
+  mysql-db:
+    container_name:  mysql-db
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      MYSQL_ROOT_PASSWORD: $MYSQLDB_PASSWORD
+    ports:
+      - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
+    volumes:
+      - mysql-volume:/var/lib/mysql:rw
+      - ./mysql-db:/docker-entrypoint-initdb.d/
+    networks:
+      - default
+
+  nestjs-app:
+    container_name: nestjs-app
+    build: ./nestjs-app
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - $NESTJS_APP_LOCAL_PORT:$NESTJS_APP_DOCKER_PORT
+    environment:
+      - MYSQL_HOST=$MYSQLDB_HOST
+      - MYSQL_USER=$MYSQLDB_USER
+      - MYSQL_PASSWORD=$MYSQLDB_PASSWORD
+      - MYSQL_DB=$MYSQLDB_DATABASE
+      - MYSQL_PORT=$MYSQLDB_DOCKER_PORT
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./nestjs-app:/app
+      - /app/node_modules
+    networks:
+      - default
+    
+  nextjs-app:
+    container_name: nextjs-app
+    build:
+      context: ./nextjs-app
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - $NEXTJS_APP_LOCAL_PORT:$NEXTJS_APP_DOCKER_PORT
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./nextjs-app:/app
+      - /app/node_modules
+      - /app/.next
+    networks:
+      - default
+
+volumes: 
+  mysql-volume:
