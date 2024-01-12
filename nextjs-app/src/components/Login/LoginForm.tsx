@@ -14,6 +14,7 @@ import {
 	Input,
 	InputAdornment,
 	InputLabel,
+	Link,
 } from "@mui/material";
 import { useLoginForm } from "./hooks/useLoginForm";
 import { authFormStyles } from "@/style";
@@ -100,6 +101,9 @@ export const LoginForm = () => {
 						Login
 					</Button>
 				</form>
+				<Box display={"flex"} alignItems={"center"} justifyContent={"center"} pb={"10px"}>
+					<Link href="/register">Register</Link>
+				</Box>
 			</Card>
 			{
 				!!message && (<AlertSnackbars onClose={() => setMessage("")} message={message} severity={severity} />)

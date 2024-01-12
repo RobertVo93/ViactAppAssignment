@@ -3,3 +3,4 @@
 /nextjs-app/dist
 /nextjs-app/node_modules
 .env
+/nextjs-app/.next
