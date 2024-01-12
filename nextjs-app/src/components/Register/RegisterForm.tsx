@@ -14,6 +14,7 @@ import {
 	Input,
 	InputAdornment,
 	InputLabel,
+	Link,
 } from "@mui/material";
 import { useRegisterForm } from "./hooks/useRegisterForm";
 import { authFormStyles } from "@/style";
@@ -131,6 +132,9 @@ export const RegisterForm = () => {
 						Register
 					</Button>
 				</form>
+				<Box display={"flex"} alignItems={"center"} justifyContent={"center"} pb={"10px"}>
+					<Link href="/login">Login</Link>
+				</Box>
 			</Card>
 			{
 				!!message && (<AlertSnackbars onClose={() => setMessage("")} message={message} severity={severity} />)
