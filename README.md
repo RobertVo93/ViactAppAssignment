@@ -17,7 +17,14 @@
       cd ../
    ```
    3. Deploy on docker by running the below command
-   ```bash
+   ```
       docker compose up -d
    ```
 4. ### Access the web app via link http://localhost:3000/
+5. ### Run test coverage in BE
+```
+   cd nestjs-app
+```
+```
+   npm run test:cov
+```
