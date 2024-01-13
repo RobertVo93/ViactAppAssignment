@@ -1,6 +1,9 @@
 /nestjs-app/dist
 /nestjs-app/node_modules
+/nestjs-app/coverage
+
 /nextjs-app/dist
 /nextjs-app/node_modules
-.env
 /nextjs-app/.next
+
+.env

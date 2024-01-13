@@ -4,7 +4,7 @@ import { FirebaseScrypt } from "firebase-scrypt";
 
 @Injectable()
 export class FirebaseAuthenticationService {
-  private scrypt: FirebaseScrypt;
+  scrypt: FirebaseScrypt;
   constructor(private readonly configService: ConfigService) {
     // Define the hash option of firebase-scrypt
     const hashConfig = {
